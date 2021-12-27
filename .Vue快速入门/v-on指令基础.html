@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-on指令基础</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- v-on指令的作用是：为元素绑定事件 -->
+    <!-- 事件名不需要写on -->
+    <!-- v-on:可简写为@ -->
+    <!-- 绑定的方法定义在methods属性中 -->
+    <!-- 方法内部通过this关键字可以访问定义在data中的数据 -->
+
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <input type="button" value="v-on指令" v-on:click="doIT">
+        <input type="button" value="v-on简写" @click="doIT">
+        <input type="button" value="双击事件" @dblclick="doIT"><br>
+        <input type="button" value="点击重复名字" @click="AddName">
+        <h2>{{name}}</h2>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false //阻止 Vue 在启动时生成生产提示
+
+        const vm = new Vue({
+            el:"#root",
+            data:{
+                name:"Turbo",
+                name1:"Turbo"
+            },
+            methods:{
+                doIT:function(){
+                    alert("做IT")
+                },
+                AddName:function(){
+                    console.log(this.name)
+                    this.name += this.name1
+                }
+            }
+        })
+    </script>
+</body>
+</html>

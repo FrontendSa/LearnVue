@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue基础</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h1>{{message}}</h1>
+        <h2>{{contact.email}} {{contact.mobile}}</h2>
+        <ul>
+            <li>{{hobbies[0]}}</li>
+            <li>{{hobbies[1]}}</li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false //阻止 Vue 在启动时生成生产提示
+
+        const vm = new Vue({
+            el:"#root",
+            data:{
+                message:"Hi,Im Turbo!",
+                contact:{
+                    email:"laixingyu_a@163.com",
+                    mobile:"18576489648"
+                },
+                hobbies:["LOL","CARS"]
+            }
+        })
+    </script>
+</body>
+</html>
