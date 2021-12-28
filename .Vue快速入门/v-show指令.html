@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-show指令</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- v-show指令的作用是：根据真假切换元素的显示状态 -->
+    <!-- 原理是修改元素的display，实现显示隐藏 -->
+    <!-- 指令后面的内容，最终都会解析为布尔值 -->
+    <!-- 值为true元素显示，值为false元素隐藏 -->
+    <!-- 数据改变之后，对应元素的显示状态会同步更新 -->
+
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <input type="button" value="切换显示状态" @click="changeIsShow">
+        <input type="button" value="累加年龄" @click="addAge">
+        <h1 v-show="isShow">Hello Turbo!</h1>
+        <h1 v-show="age >= 20">Hello Turbo!</h1>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false //阻止 Vue 在启动时生成生产提示
+
+        const vm = new Vue({
+            el:"#root",
+            data:{
+                isShow:false,
+                age:18
+            },
+            methods:{
+                changeIsShow:function(){
+                    this.isShow = !this.isShow;
+                    console.log(this.isShow);
+                },
+                addAge:function(){
+                    this.age++;
+                    console.log(this.age);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

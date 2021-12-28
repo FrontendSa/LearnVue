@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if指令</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- v-if指令的作用是：根据表达式的真假切换元素的显示状态 -->
+    <!-- 本质是通过操纵dom元素来切换显示状态 -->
+    <!-- 表达式的值为true，元素存在于dom树中，值为false，从dom树中移除 -->
+
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <input type="button" value="切换显示" @click="toggleIsShow">
+        <p v-if="isShow">Hello Turbo!</p>
+        <p v-show="isShow">Hello Turbo! -- v-show修饰</p>
+        <h2 v-if="temperature>=30">Its so hot！</h2>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false //阻止 Vue 在启动时生成生产提示
+
+        const vm = new Vue({
+            el:"#root",
+            data:{
+                isShow:false,
+                temperature:20
+            },
+            methods:{
+                toggleIsShow:function(){
+                    this.isShow = !this.isShow;
+                    console.log(this.isShow);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for指令</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- v-for指令的作用是：根据数据生成列表结构 -->
+    <!-- 数组经常和v-for结合使用 -->
+    <!-- 语法是(item,index) in 数据 -->
+    <!-- item和index 可以结合其他指令一起使用 -->
+    <!-- 数组长度的更新会同步到页面上，是响应式的 -->
+
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <input type="button" value="添加数据" @click="add">
+        <input type="button" value="移除数据" @click="remove">
+
+        <ul>
+            <li v-for="(item,index) in Heros">
+                {{index + 1}}. 英雄：{{item}}
+            </li>
+        </ul>
+        <h2 v-for="item in Maps" :title="item.map">
+            {{item.map}}
+        </h2>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false //阻止 Vue 在启动时生成生产提示
+
+        const vm = new Vue({
+            el:"#root",
+            data:{
+                Heros:["锐雯","菲奥娜","卡密尔","艾瑞莉娅"],
+                Maps:[
+                    {map:"召唤师峡谷"},
+                    {map:"嚎哭深渊"}
+                ]
+            },
+            methods:{
+                add:function(){
+                    this.Maps.push({map:"扭曲丛林"});
+                },
+                remove:function(){
+                    this.Maps.shift();
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-on指令补充</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 事件绑定的方法写成函数调用形式，可以传入自定义参数 -->
+    <!-- 定义方法时需要定义形参来接收输入的实参 -->
+    <!-- 事件的后面跟上 .修饰符 可以对事件进行限制 -->
+    <!-- .enter可以限制触发的按键为回车 -->
+    <!-- 事件修饰符有很多种，详细可前往Vue.js官网查看API -->
+
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <input type="button" value="点击" @click="sayHi('Hi','Whats ur name?')">
+        <input type="text" @keyup.enter="showName">
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false //阻止 Vue 在启动时生成生产提示
+
+        const vm = new Vue({
+            el:"#root",
+            methods:{
+                sayHi:function(p1,p2){
+                    console.log(p1);
+                    console.log(p2);
+                },
+                showName:function(){
+                    alert("Hello Turbo!");
+                }
+            }
+        })
+    </script>
+</body>
+</html>
