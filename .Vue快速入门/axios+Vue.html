@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>axios+Vue</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <!-- 阻止Vue在启动时生成生产提示 -->
+    <script>Vue.config.productionTip = false</script>
+    <!-- 引入axios(官网提供的axios在线地址) -->
+    <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <!-- axios回调函数中的this已经改变，无法访问到Vue中data的数据 -->
+    <!-- 把this保存起来，回调函数中直接使用保存的this即可 -->
+    <!-- 和本地应用的最大区别就是改变了数据来源 -->
+
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <input type="button" value="获取笑话" @click="getJoke">
+        <p>{{joke}}</p>
+    </div>
+
+    <script type="text/javascript">
+        /*
+        接口1:随机获取一条笑话
+        请求地址：https://autumnfish.cn/api/joke
+        请求方法：get
+        请求参数：无
+        响应内容；随机笑话
+        */
+        const vm = new Vue({
+            el:"#root",
+            data:{
+                joke:""
+            },
+            methods:{
+                getJoke:function(){
+                    let that = this;
+                    axios.get("https://autumnfish.cn/api/joke")
+                    .then(function(response){
+                        console.log(response.data);
+                        that.joke = response.data;
+                    },function(err){
+                        console.log(err);
+                    });
+                }
+            }
+        })
+    </script>
+</body>
+</html>
