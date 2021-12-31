@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件修饰符</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <!-- 阻止 Vue 在启动时生成生产提示 -->
+    <script type="text/javascript"> Vue.config.productionTip = false</script>
+    <style>
+        *{
+            margin-top: 20px;
+        }
+        .demo1{
+            height: 50px;
+            background-color: #7c36ff;
+            padding-left: 20px;
+            padding-bottom: 15px;
+            border-radius: 10px;
+            border:2px solid black;
+        }
+        .demo2{
+            height: 50px;
+            background-color: #585bff;
+            padding-left: 20px;
+            padding-bottom: 15px;
+            border-radius: 10px;
+            border:2px solid black;
+        }
+        .demo3{
+            background-color: #58ecff;
+            padding-left: 20px;
+            border-radius: 10px;
+            border:2px solid black;
+        }
+        .demo4{
+            background-color: #e6ff58;
+            padding-left: 20px;
+            border-radius: 10px;
+            border:2px solid black;
+        }
+        .list{
+            width: 200px;
+            height: 200px;
+            background-color: #d182ff;
+            overflow: auto;
+            border-radius: 10px;
+        }
+        li{
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+      Vue中的事件修饰符；
+        1. prevent：阻止默认事件（常用）
+        2. stop：阻止事件冒泡（常用）
+        3. once：事件只触发一次（常用）
+        4. capture：使用事件的捕获模式
+        5. self：只有event.target是当前操作的元素时才触发事件
+        6. passive：事件的默认行为立即执行，无需等待事件回调执行完毕
+      注意：
+        修饰符可以连用，用.隔开
+     -->
+
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <!-- 阻止默认事件（常用） -->
+        <a href="https://www.baidu.com" @click.prevent="showInfo">阻止默认事件</a>
+
+        <!-- 阻止事件冒泡（常用） -->
+        <div class="demo1" @click="showInfo">
+            <button @click.stop="showInfo">阻止事件冒泡</button>
+        </div>
+
+        <!-- 事件只触发一次（常用） -->
+        <div class="demo2">
+            <button @click.once="showInfo">事件只触发一次</button>
+        </div>
+
+        <!-- 使用事件的捕获模式 -->
+        <div class="demo3" @click.capture="showMsg(1)">
+            使用事件的捕获模式1
+            <div class="demo4" @click="showMsg(2)">
+                使用事件的捕获模式2
+            </div>
+        </div>
+
+        <!-- 只有event.target是当前操作的元素时才触发事件 -->
+        <div class="demo1" @click.self="showInfo" style="background-color: #58ff90;">
+            <button @click="showInfo">只有event.target是当前操作的元素时才触发事件</button>
+        </div>
+
+        <!-- 事件的默认行为立即执行，无需等待事件回调执行完毕 -->
+        <ul class="list" @wheel.passive="demo">
+            <li>事件的默认行为立即执行，无需等待事件回调执行完毕</li>
+            <li>事件的默认行为立即执行，无需等待事件回调执行完毕</li>
+            <li>事件的默认行为立即执行，无需等待事件回调执行完毕</li>
+            <li>事件的默认行为立即执行，无需等待事件回调执行完毕</li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        const vm = new Vue({
+            el:"#root",
+            data:{
+            },
+            methods:{
+                showInfo(e){
+                    alert('Hello!');
+                    // console.log(e.target);
+                },
+                showMsg(Msg){
+                    console.log(Msg);
+                },
+                demo(){
+                    for (let i = 0; i < 100000; i++) {
+                        console.log('#');
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
