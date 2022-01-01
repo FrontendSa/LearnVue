@@ -38,7 +38,7 @@
         Vue.config.productionTip = false //阻止 Vue 在启动时生成生产提示
 
         // 创建 Vue 实例
-        new Vue({
+        const vm = new Vue({
             el:'#root', //el 是 elemennt 的简称，意思为元素，用于指定当前 Vue 实例为哪个容器服务，值通常为 css 选择器字符串
             // el:document.getElementById('root') 与上方写法作用相同
             data:{ //data 中用于存储数据，数据供 el 所指定的容器去使用，值暂时先写成一个对象
