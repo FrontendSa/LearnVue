@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>标题</title>
+    <title>v-pre指令</title>
     <!-- 引入Vue -->
     <script type="text/javascript" src="../js/vue.js"></script>
     <!-- 阻止 Vue 在启动时生成生产提示 -->
@@ -10,16 +10,23 @@
 </head>
 <body>
     <!-- 
+        v-pre指令：
+            1. Vue跳过指令所在节点的编译过程
+            2. 可利用它跳过：没有使用指令语法、没有使用插值语法的节点，可以加快编译速度
      -->
 
     <!-- 准备好一个容器 -->
     <div id="root">
+        <h2 v-pre>Hello,Turbo!</h2>
+        <h2 >当前的n值是:{{ n }}</h2>
+        <button @click="n++">点我n+1</button>
     </div>
 
     <script type="text/javascript">
         const vm = new Vue({
-            el: '#root',
+            el: "#root",
             data: {
+                n:1
             }
         })
     </script>
